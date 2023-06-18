@@ -31,3 +31,9 @@ steps:
   inputs:
     PathtoPublish: 'out'
   condition: succeededOrFailed()
+- task: NuGetCommand@2
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    nuGetFeedType: 'internal'
+    publishVstsFeed: 'fe213d83-d26e-41d9-9aa6-f043233667de'
